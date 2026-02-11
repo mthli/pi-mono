@@ -1,13 +1,5 @@
 /**
- * Set up HTTP proxy according to env variables for `fetch` based SDKs in Node.js.
- * Bun has builtin support for this.
- *
- * This module should be imported early by any code that needs proxy support for fetch().
- * ES modules are cached, so importing multiple times is safe - setup only runs once.
+ * HTTP proxy setup.
+ * In browser environments, proxy configuration is handled by the browser itself.
+ * This module is kept as a no-op for import compatibility.
  */
-if (typeof process !== "undefined" && process.versions?.node) {
-	import("undici").then((m) => {
-		const { EnvHttpProxyAgent, setGlobalDispatcher } = m;
-		setGlobalDispatcher(new EnvHttpProxyAgent());
-	});
-}
